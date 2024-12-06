@@ -136,7 +136,7 @@ export default function Sidebar() {
               {favoriteTeams.map((team) => (
                 <Link
                   key={team.id}
-                  href={`/team/${team.id}`}
+                  href="/"
                   className="block p-1.5 rounded-lg hover:bg-[#2A2A2A] transition-colors duration-150 group"
                 >
                   <div className="flex items-center">
@@ -159,7 +159,7 @@ export default function Sidebar() {
               {favoriteItems.map((item) => (
                 <Link
                   key={item.id}
-                  href={`/profile/${item.id}`}
+                  href="/"
                   className="block p-1.5 rounded-lg hover:bg-[#2A2A2A] transition-colors duration-150 group"
                 >
                   <div className="flex items-center">
@@ -179,7 +179,7 @@ export default function Sidebar() {
       )}
  {!isCollapsed && (
         <div className="mb-4 px-1.5">
-          <Link href="/profile" className="block p-1.5 rounded-lg hover:bg-[#2A2A2A] transition-colors duration-150 group">
+          <Link href="/" className="block p-1.5 rounded-lg hover:bg-[#2A2A2A] transition-colors duration-150 group">
             <div className="flex items-center">
               <div className="w-6 h-6 bg-[#2A2A2A] rounded-full flex items-center justify-center text-gray-300 group-hover:bg-[#3A3A3A] flex-shrink-0">
                 <User size={14} className="group-hover:text-white" />
@@ -195,7 +195,7 @@ export default function Sidebar() {
 
       <nav>
         <Link
-          href="/settings"
+          href="/"
           className={`
             flex items-center
             px-2.5 py-2

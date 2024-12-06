@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { ArrowUp, HelpCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUp} from 'lucide-react';
 
 type PromptType = '프로젝트 팀 구성' | '스킬 기반 검색' | '경력자 추천' | '부서별 검색';
 
@@ -13,6 +13,7 @@ export default function RightPanel() {
     if (!searchQuery.trim()) return;
     // TODO: 인재 검색 로직
     setSearchQuery('');
+    window.location.href = '/';
   };
 
   const promptExamples: Record<PromptType, string> = {
@@ -77,7 +78,10 @@ export default function RightPanel() {
         ].map(({label, icon}) => (
           <button 
             key={label} 
-            onClick={() => setSearchQuery(promptExamples[label])}
+            onClick={() => {
+              setSearchQuery(promptExamples[label]);
+              window.location.href = '/';
+            }}
             className="px-3 py-2 rounded-lg bg-[#2F2F2F] text-xs text-gray-200 
               hover:bg-[#3A3A3A] transition-all duration-200 flex items-center gap-1.5
               hover:text-white"
