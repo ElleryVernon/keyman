@@ -80,7 +80,6 @@ export default function RightPanel() {
             key={label} 
             onClick={() => {
               setSearchQuery(promptExamples[label]);
-              window.location.href = '/';
             }}
             className="px-3 py-2 rounded-lg bg-[#2F2F2F] text-xs text-gray-200 
               hover:bg-[#3A3A3A] transition-all duration-200 flex items-center gap-1.5
