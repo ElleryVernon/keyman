@@ -282,7 +282,7 @@ export default function SearchResultsPage() {
                 <div className="flex-1">
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <h3 className="text-sm font-medium group-hover:text-blue-400">
+                      <h3 className="text-sm font-medium">
                         {result.name}
                       </h3>
                       <div className="flex items-center space-x-1.5 mt-0.5">
