@@ -8,7 +8,7 @@
 "use client";
 
 import { useState } from 'react';
-import { ArrowLeft, Filter, Search, Star, Briefcase, Building, Clock } from 'lucide-react';
+import { ArrowLeft, Filter, Search, Briefcase, Building } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
