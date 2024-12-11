@@ -1,4 +1,4 @@
-import { ArrowLeft, Filter, Search, Briefcase, Building } from "lucide-react";
+import { ArrowLeft, Search, Briefcase, Building } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -29,7 +29,7 @@ const MOCK_RESULTS: SearchResult[] = [
 		profileImage: "https://randomuser.me/api/portraits/men/1.jpg",
 	},
 	{
-		id: "2", 
+		id: "2",
 		name: "이프론트",
 		position: "프론트엔드 개발자",
 		skills: ["React", "TypeScript", "Next.js", "Tailwind"],
@@ -135,7 +135,7 @@ const MOCK_RESULTS: SearchResult[] = [
 		highlights: ["사용자 중심 디자인", "디자인 시스템"],
 		availability: "busy",
 		profileImage: "https://randomuser.me/api/portraits/men/10.jpg",
-	}
+	},
 ];
 
 async function searchTalents(formData: FormData) {
@@ -227,10 +227,13 @@ export default async function SearchResultsPage({
 			</nav>
 
 			<main className="max-w-4xl mx-auto px-3 py-3">
-				<form action={async (formData: FormData) => {
-					'use server';
-					await searchTalents(formData);
-				}} className="mb-4">
+				<form
+					action={async (formData: FormData) => {
+						"use server";
+						await searchTalents(formData);
+					}}
+					className="mb-4"
+				>
 					<div className="relative">
 						<div className="absolute inset-y-0 left-0 pl-2 flex items-center">
 							<Search className="w-3.5 h-3.5 text-[#A8A8A8]" />

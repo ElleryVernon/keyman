@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, User, Users, ChevronLeft, ChevronRight, Settings } from "lucide-react";
+import { Search, User, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { Session } from "next-auth";
 import Image from "next/image";
 import LoginButton from "./auth-button";
@@ -140,17 +140,15 @@ function FavoriteTalentItem({ talent }: { talent: FavoriteItem }) {
 	);
 }
 
-function UserProfile({ user, isCollapsed }: { user: Session["user"]; isCollapsed: boolean }) {
+function UserProfile({ user }: { user: Session["user"] }) {
 	if (!user) return null;
 
 	return (
 		<Link
 			href="/profile"
-			className={`block p-1.5 rounded-lg hover:bg-[#202020] transition-colors duration-150 group ${
-				isCollapsed ? "flex justify-center" : ""
-			}`}
+			className="block p-1.5 rounded-lg hover:bg-[#202020] transition-colors duration-150 group"
 		>
-			<div className={`flex items-center ${isCollapsed ? "justify-center" : ""}`}>
+			<div className="flex items-center">
 				<div className="w-6 h-6 bg-[#202020] rounded-full flex items-center justify-center text-gray-300 group-hover:bg-[#252525] flex-shrink-0 overflow-hidden">
 					{user.image ? (
 						<Image
@@ -164,14 +162,12 @@ function UserProfile({ user, isCollapsed }: { user: Session["user"]; isCollapsed
 						<User size={14} className="group-hover:text-white" />
 					)}
 				</div>
-				{!isCollapsed && (
-					<div className="ml-2.5 min-w-0">
-						<p className="text-white text-xs font-medium group-hover:text-gray-100 truncate">
-							{user.name}
-						</p>
-						<p className="text-gray-400 text-[10px] truncate">{user.email}</p>
-					</div>
-				)}
+				<div className="ml-2.5 min-w-0">
+					<p className="text-white text-xs font-medium group-hover:text-gray-100 truncate">
+						{user.name}
+					</p>
+					<p className="text-gray-400 text-[10px] truncate">{user.email}</p>
+				</div>
 			</div>
 		</Link>
 	);
@@ -260,13 +256,11 @@ export default function Sidebar({ session }: SidebarProps) {
 			)}
 
 			<div className="mt-auto">
-				<div className="px-1.5">
-					{session?.user ? (
-						<UserProfile user={session.user} isCollapsed={isCollapsed} />
-					) : (
-						!isCollapsed && <LoginButton />
-					)}
-				</div>
+				{!isCollapsed && (
+					<div className="px-1.5">
+						{session?.user ? <UserProfile user={session.user} /> : <LoginButton />}
+					</div>
+				)}{" "}
 			</div>
 		</aside>
 	);

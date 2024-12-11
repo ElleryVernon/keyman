@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { ArrowUp } from "lucide-react";
+import { Session } from "next-auth";
 
 type SearchPromptType = "프로젝트 팀 구성" | "스킬 기반 검색" | "경력자 추천" | "부서별 검색";
 
@@ -26,7 +27,7 @@ const PROMPT_BUTTONS: { label: SearchPromptType; icon: string }[] = [
 
 interface SearchInputProps {
 	onSubmit: (formData: FormData) => Promise<void>;
-	session: any;
+	session: Session | null;
 }
 
 export default function SearchInput({ onSubmit, session }: SearchInputProps) {
