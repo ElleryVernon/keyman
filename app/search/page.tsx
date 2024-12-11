@@ -23,7 +23,7 @@ interface SearchParams {
 }
 
 interface PageProps {
-	searchParams: SearchParams;
+	searchParams: Promise<SearchParams>;
 }
 
 const MOCK_RESULTS: SearchResult[] = [
@@ -163,9 +163,10 @@ async function searchTalents(formData: FormData) {
 	);
 }
 
-export default function Page({ searchParams }: PageProps) {
-	const query = searchParams.query || "";
-	const selectedView = (searchParams.view as "card" | "list") || "card";
+export default async function Page({ searchParams }: PageProps) {
+	const params = await searchParams;
+	const query = params.query || "";
+	const selectedView = (params.view as "card" | "list") || "card";
 
 	const results = MOCK_RESULTS;
 
