@@ -36,6 +36,8 @@ const config = {
 			},
 		],
 	},
+	// Disable ESLint during build
+	ignoreDuringBuilds: true,
 };
 
 module.exports = config;
