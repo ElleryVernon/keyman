@@ -15,11 +15,18 @@ interface SearchResult {
 	availability: "available" | "busy" | "unavailable";
 }
 
+interface SearchPageProps {
+	searchParams: {
+		query?: string;
+		view?: string;
+	}
+}
+
 const MOCK_RESULTS: SearchResult[] = [
 	{
 		id: "1",
 		name: "김개발",
-		position: "시니어 백엔드 개발자",
+		position: "시니어 백엔드 개발자", 
 		skills: ["Java", "Spring Boot", "MSA", "Kubernetes"],
 		experience: 7,
 		department: "플랫폼개발팀",
@@ -29,7 +36,7 @@ const MOCK_RESULTS: SearchResult[] = [
 		profileImage: "https://randomuser.me/api/portraits/men/1.jpg",
 	},
 	{
-		id: "2",
+		id: "2", 
 		name: "이프론트",
 		position: "프론트엔드 개발자",
 		skills: ["React", "TypeScript", "Next.js", "Tailwind"],
@@ -152,11 +159,9 @@ async function searchTalents(formData: FormData) {
 	);
 }
 
-export default async function SearchResultsPage({
+export default function SearchResultsPage({
 	searchParams,
-}: {
-	searchParams: { query?: string; view?: string };
-}) {
+}: SearchPageProps) {
 	const query = searchParams.query || "";
 	const selectedView = (searchParams.view as "card" | "list") || "card";
 
