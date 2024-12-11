@@ -22,6 +22,10 @@ interface SearchParams {
 	view?: string;
 }
 
+interface PageProps {
+	searchParams: SearchParams;
+}
+
 const MOCK_RESULTS: SearchResult[] = [
 	{
 		id: "1",
@@ -159,7 +163,7 @@ async function searchTalents(formData: FormData) {
 	);
 }
 
-export default function Page({ searchParams }: { searchParams: SearchParams }) {
+export default function Page({ searchParams }: PageProps) {
 	const query = searchParams.query || "";
 	const selectedView = (searchParams.view as "card" | "list") || "card";
 
