@@ -1,3 +1,5 @@
+// app/search/page.tsx
+
 import { ArrowLeft, Search, Briefcase, Building } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,6 +15,11 @@ interface SearchResult {
 	profileImage?: string;
 	highlights: string[];
 	availability: "available" | "busy" | "unavailable";
+}
+
+interface SearchParams {
+	query?: string;
+	view?: string;
 }
 
 const MOCK_RESULTS: SearchResult[] = [
@@ -142,7 +149,7 @@ async function searchTalents(formData: FormData) {
 	"use server";
 
 	const query = formData.get("query")?.toString() || "";
-	// TODO: 실제 검색 로직 구현
+	// TODO: 실제 검색 로직을 구현
 	// 여기서는 MOCK_RESULTS를 간단히 필터링
 	return MOCK_RESULTS.filter(
 		(result) =>
@@ -152,14 +159,7 @@ async function searchTalents(formData: FormData) {
 	);
 }
 
-export default function SearchResultsPage({
-	searchParams,
-}: {
-	searchParams: {
-		query?: string;
-		view?: string;
-	};
-}) {
+export default function Page({ searchParams }: { searchParams: SearchParams }) {
 	const query = searchParams.query || "";
 	const selectedView = (searchParams.view as "card" | "list") || "card";
 
