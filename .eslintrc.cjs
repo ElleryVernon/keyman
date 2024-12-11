@@ -36,6 +36,16 @@ const config = {
 				},
 			},
 		],
+		// Add this rule to fix the type error with searchParams
+		"@typescript-eslint/ban-types": [
+			"error",
+			{
+				types: {
+					"{}": false,
+				},
+				extendDefaults: true,
+			},
+		],
 	},
 };
 
