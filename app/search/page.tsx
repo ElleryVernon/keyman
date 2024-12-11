@@ -15,18 +15,11 @@ interface SearchResult {
 	availability: "available" | "busy" | "unavailable";
 }
 
-interface SearchPageProps {
-	searchParams: {
-		query?: string;
-		view?: string;
-	}
-}
-
 const MOCK_RESULTS: SearchResult[] = [
 	{
 		id: "1",
 		name: "김개발",
-		position: "시니어 백엔드 개발자", 
+		position: "시니어 백엔드 개발자",
 		skills: ["Java", "Spring Boot", "MSA", "Kubernetes"],
 		experience: 7,
 		department: "플랫폼개발팀",
@@ -36,7 +29,7 @@ const MOCK_RESULTS: SearchResult[] = [
 		profileImage: "https://randomuser.me/api/portraits/men/1.jpg",
 	},
 	{
-		id: "2", 
+		id: "2",
 		name: "이프론트",
 		position: "프론트엔드 개발자",
 		skills: ["React", "TypeScript", "Next.js", "Tailwind"],
@@ -149,8 +142,8 @@ async function searchTalents(formData: FormData) {
 	"use server";
 
 	const query = formData.get("query")?.toString() || "";
-	// TODO: Implement actual search logic here
-	// For now, just filter mock data
+	// TODO: 실제 검색 로직 구현
+	// 여기서는 MOCK_RESULTS를 간단히 필터링
 	return MOCK_RESULTS.filter(
 		(result) =>
 			result.name.includes(query) ||
@@ -161,7 +154,12 @@ async function searchTalents(formData: FormData) {
 
 export default function SearchResultsPage({
 	searchParams,
-}: SearchPageProps) {
+}: {
+	searchParams: {
+		query?: string;
+		view?: string;
+	};
+}) {
 	const query = searchParams.query || "";
 	const selectedView = (searchParams.view as "card" | "list") || "card";
 
