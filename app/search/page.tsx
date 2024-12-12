@@ -1,5 +1,3 @@
-// app/search/page.tsx
-
 import { ArrowLeft, Search, Briefcase, Building } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -167,7 +165,6 @@ export default async function Page({ searchParams }: PageProps) {
 	const params = await searchParams;
 	const query = params.query || "";
 	const selectedView = (params.view as "card" | "list") || "card";
-
 	const results = MOCK_RESULTS;
 
 	function getAvailabilityInfo(availability: SearchResult["availability"]) {

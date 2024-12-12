@@ -1,8 +1,6 @@
-// TalentSearchPanel.tsx (Server Component)
 import { redirect } from "next/navigation";
 import { auth } from "./lib/auth";
 import SearchInput from "@/components/search-input";
-
 
 // 서버 액션
 async function searchTalents(formData: FormData) {
@@ -18,7 +16,11 @@ export default async function TalentSearchPanel() {
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen bg-[#212121] text-white p-8">
 			<h1 className="text-2xl mb-5 font-bold">당신의 Keyman을 찾아보세요</h1>
-			<SearchInput onSubmit={searchTalents} session={session} />
+			{/* suppressHydrationWarning를 통해 외부 확장프로그램 등의 HTML 변조로 발생하는
+          경고 메시지를 줄일 수 있습니다. */}
+			<div suppressHydrationWarning>
+				<SearchInput onSubmit={searchTalents} session={session} />
+			</div>
 			<p className="text-[#9A9A9A] text-[11px] text-center fixed bottom-3">
 				검색 결과를 모델을 훈련하는 데 사용하지 않습니다. Keyman은 테스트 버전으로 실수를 할 수
 				있습니다.

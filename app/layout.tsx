@@ -17,7 +17,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
 	title: "POSCO Keyman | 포스코그룹 인재 검색",
-	description: "포스코그룹의 인재를 검색하고 프로젝트 팀을 구성하세요. AI 기반 인재 매칭 시스템으로 최적의 팀원을 찾아보세요.",
+	description:
+		"포스코그룹의 인재를 검색하고 프로젝트 팀을 구성하세요. AI 기반 인재 매칭 시스템으로 최적의 팀원을 찾아보세요.",
 	keywords: ["포스코", "인재검색", "프로젝트", "팀빌딩", "AI매칭", "인재관리"],
 	authors: [{ name: "POSCO Holdings" }],
 	creator: "POSCO Holdings",

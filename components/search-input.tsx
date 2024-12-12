@@ -1,7 +1,6 @@
-// SearchInput.tsx (Client Component)
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
 import { Session } from "next-auth";
 
@@ -32,6 +31,25 @@ interface SearchInputProps {
 
 export default function SearchInput({ onSubmit, session }: SearchInputProps) {
 	const [query, setQuery] = useState("");
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		// 클라이언트에서 마운트된 후에만 mounted를 true로 설정합니다.
+		setMounted(true);
+	}, []);
+
+	// 서버 렌더와 클라이언트 렌더에서 동일한 초기 렌더링을 유지하기 위해
+	// mounted가 false일 때는 SSR 시점과 동일한 구조를 유지합니다.
+	// 여기서는 간단히 빈 div를 유지하거나 로더를 표시할 수 있습니다.
+	if (!mounted) {
+		return (
+			<div className="w-full max-w-xl">
+				<div className="rounded-2xl bg-[#2E2E2E] p-3">
+					<div className="relative w-full min-h-[48px]" />
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="w-full max-w-xl">
@@ -49,11 +67,10 @@ export default function SearchInput({ onSubmit, session }: SearchInputProps) {
 									? "필요한 인재의 조건을 입력해 주세요 (예: Java 개발자, 5년 이상 경력, 프로젝트 리딩 경험)"
 									: "검색하려면 로그인이 필요합니다"
 							}
-							className="w-full text-[13px] bg-transparent
-                  text-white placeholder-[#9A9A9A] resize-none
-                  border-none focus:outline-none min-h-[48px] max-h-[120px]
-                  scrollbar-thin scrollbar-thumb-[#383838] scrollbar-track-transparent
-                  hover:scrollbar-thumb-[#454545] disabled:opacity-50 disabled:cursor-not-allowed"
+							className="w-full text-[13px] bg-transparent text-white placeholder-[#9A9A9A]
+                         resize-none border-none focus:outline-none min-h-[48px] max-h-[120px]
+                         scrollbar-thin scrollbar-thumb-[#383838] scrollbar-track-transparent
+                         hover:scrollbar-thumb-[#454545] disabled:opacity-50 disabled:cursor-not-allowed"
 							style={{
 								scrollbarWidth: "thin",
 								scrollbarColor: "#383838 transparent",
@@ -67,9 +84,9 @@ export default function SearchInput({ onSubmit, session }: SearchInputProps) {
 							type="submit"
 							disabled={!session || !query.trim()}
 							className="p-1.5 bg-white hover:brightness-75
-                rounded-full transition-all duration-200
-                active:scale-95 flex items-center justify-center
-                disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100"
+                         rounded-full transition-all duration-200
+                         active:scale-95 flex items-center justify-center
+                         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100"
 							aria-label="검색"
 						>
 							<ArrowUp size={16} className="text-[#212121]" />
